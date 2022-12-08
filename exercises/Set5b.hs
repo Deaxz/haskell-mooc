@@ -203,4 +203,12 @@ set path val tree = todo
 --                    (Node 5 Empty Empty))                     ==>  Just [StepL,StepR]
 
 search :: Eq a => a -> Tree a -> Maybe [Step]
-search = todo
+search v Empty = Nothing
+search v (Node x l r) | v == x = Just []
+                      | otherwise = case left of 
+                                      Just p1 -> Just (StepL : p1)
+                                      Nothing -> case right of 
+                                                   Just p2 -> Just (StepR : p2)
+                                                   Nothing -> Nothing
+                      where left = search v l
+                            right = search v r

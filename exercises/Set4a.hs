@@ -1,7 +1,7 @@
 -- Exercise set 4a:
 --
---  * using type classes
---  * working with lists
+-- * using type classes
+-- * working with lists
 --
 -- Type classes you'll need
 --  * Eq
@@ -35,7 +35,9 @@ import Data.Array
 -- you remove the Eq a => constraint from the type!
 
 allEqual :: Eq a => [a] -> Bool
-allEqual xs = todo
+allEqual [] = True
+allEqual [x] = True
+allEqual (x:y:xs) = x == y && allEqual (y:xs)
 
 ------------------------------------------------------------------------------
 -- Ex 2: implement the function distinct which returns True if all
